@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<conio.h>
+int a[20];
+void ASP(int s[],int f[],int k,int n)
+{
+	int m;
+	m=k+1;
+	while(m<=n && s[m]<f[k])
+	{
+		m++;
+	}
+	if(m<=n)
+	{
+		printf("%3d",a[m]);
+		return(ASP(s,f,m,n));
+	}
+}
+void main()
+{
+	int i,s[20],f[20],n;
+	clrscr();
+	printf("\nHow many activities?\n");
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+	{
+		a[i]=i;
+	}
+	printf("\nEnter start time and finish time of %d activities:",n);
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d %d",&s[i],&f[i]);
+	}
+	printf("\nLargest Subset:");
+	ASP(s,f,0,n);
+getch();
+}

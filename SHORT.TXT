@@ -1,0 +1,74 @@
+//Floyd warshall shortest path using dyanamic programming
+#include<stdio.h>
+#include<conio.h>
+#define inf 9999
+int arr[5][5];
+int cost[5][5];
+int n;
+void path()
+{
+	int i,j,k,q,r;
+	for(k=0;k<n;k++)
+	{
+		printf("Intermediate vertex :%d",k+1);
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+			if(i!=k && j!=k)
+			{
+				if(i!=j)
+				{
+					if(arr[i][j]>arr[i][k]+arr[k][j])
+						arr[i][j]==arr[i][k]+arr[k][j];
+				}
+			}
+		}
+	}
+	printf("\nShortest path : \n");
+	for(q=0;q<n;q++)
+	{
+	for(r=0;r<n;r++)
+		printf("\t%d",arr[q][r]);
+	printf("\n");
+	}
+	getch();
+}
+}
+void creat()
+{
+	int i,j;
+	printf("\nHow many nodes?");
+	scanf("%d",&n);
+	printf("\nEnter cost matrix:\n");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+		if(i==j)
+			arr[i][j]=0;
+		else
+		{
+			printf("\ncost [%d][%d]:",i+1,j+1);
+			scanf("%d",&cost[i][j]);
+			if(cost[i][j]==0)
+				arr[i][j]=inf;
+			else
+				arr[i][j]=cost[i][j];
+		}
+		}
+	}
+	printf("\n cost matrix:\n\n");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+			printf("\t%d",arr[i][j]);
+		printf("\n");
+	}
+}
+void main()
+{
+	clrscr();
+	creat();
+	path();
+}
