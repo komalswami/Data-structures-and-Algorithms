@@ -1,0 +1,43 @@
+//Matrix Multiplication using Strassen's Algorithm
+#include<stdio.h>
+#include<conio.h>
+void st(int, int, int, int, int, int, int, int);
+int a[2][2], b[2][2], c[2][2];
+void main()
+{
+int i, j;
+clrscr();
+printf("\n Enter matrix A (2x2) :");
+for(i=0;i<2;i++)
+for(j=0;j<2;j++)
+scanf("%d", &a[i][j]);
+printf("\n Enter matrix B (2x2) :");
+for(i=0;i<2;i++)
+for(j=0;j<2;j++)
+scanf("%d", &b[i][j]);
+st(a[0][0],a[0][1],a[1][0],a[1][1],b[0][0],b[0][1],b[1][0],b[1][1]); 
+printf("\n Matrix C:\n");
+for(i=0;i<2;i++)
+{
+for(j=0;j<2;j++)
+printf("\t%d",c[i][j]);
+printf("\n"); 
+}
+getch();
+}
+
+void st(int a11, int a12, int a21, int a22,int b11, int b12, int b21, int b22) {
+int p, q, r, s, t, u, v;
+p= (a11 + a22) * ( b11 + b22);
+q= (a21 +a22) * b11;
+r= a11 * (b12 - b22);
+s= a22 * (b21 - b11);
+t= (a11 + a12) * b22;
+u= (a21 - a11) * ( b11 + b12);
+v= (a12 - a22) * ( b21 + b22);
+
+c[0][0] = p + s - t + v;
+c[0][1] = r + t;
+c[1][0] = q + s;
+c[1][1] = p + r - q + u;
+}
