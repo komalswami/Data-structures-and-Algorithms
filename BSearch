@@ -1,0 +1,65 @@
+// Binary Search using recursion:
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h> 
+int *a,cnt=0;
+int binsrch(int low, int high, int x);
+void main()
+{
+int i,n,num,pos;
+char ans;
+clrscr();
+printf(" Enter size of an array: ");
+scanf("%d",&n);
+a = (int *) malloc(n);
+printf("\n Enter %d integers in ascending order:",n);
+for(i=1;i<=n;i++)
+scanf("%d", &a[i]);
+do
+{
+printf("\n Enter integer to be searched : ");
+scanf("%d",&num);
+printf("\n low high mid a[mid]");
+pos=binsrch(1,n,num);
+if(pos==0)
+printf(" \n\n %d not found .",num);
+else
+printf(" \n\n %d Found at %d",num,pos);
+printf(" \n\n Number of comparisions: %d", cnt);
+cnt=0; 
+printf("\n Do u want to cnt....");
+flushall();
+ans = getche();
+} while(ans=='y');
+}
+
+int binsrch(int low, int high, int x)
+{
+int mid;
+if(low<=high) 
+{
+mid = (low+high)/2;
+cnt++; 
+if(a[mid]==x)
+{
+printf("\n%5d %5d %5d %5d",low,high,mid,a[mid]);
+return (mid);
+}
+else
+if(a[mid]<x)
+{
+printf("\n%5d %5d %5d %5d",low,high,mid,a[mid]);
+binsrch (mid+1, high,x);
+}
+else
+{
+printf("\n%5d %5d %5d %5d",low,high,mid,a[mid]);
+binsrch(low,mid-1,x);
+}
+}
+else
+{
+printf("\n%5d %5d",low,high);
+return 0;
+}
+}
