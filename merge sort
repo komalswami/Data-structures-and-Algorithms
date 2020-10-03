@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<conio.h>
+#include<time.h>
+#include<dos.h>
+int a[20],b[20];
+int n;
+void mergsort(int low, int high);
+void merge(int low, int mid, int high);
+void main()
+{
+int i;
+clock_t start, end;
+clrscr();
+printf(" Enter size of an array: ");
+scanf("%d",&n);
+printf("\n Enter %d integers. : ",n);
+for(i=0;i<n;i++)
+scanf("%d",&a[i]);
+printf("\n");
+start = clock();
+mergsort(0,n-1);
+printf("\n\n\n Sorted list: ");
+for(i=0;i<n;i++)
+printf("%3d",a[i]);
+end = clock();
+printf("\n Total time = %f seconds",(end-start)/CLK_TCK);
+getch();
+}
+
+2
+
+// Divide the task
+void mergsort(int low, int high)
+{
+int mid;
+if(low<high)
+{
+mid = (low+high)/2;
+mergsort(low,mid);
+mergsort(mid+1,high);
+merge(low,mid,high);
+}
+}
+//Merge sorted lists
+void merge(int low, int mid, int high)
+{
+int h,i,j,k;
+h = low; // Varies from low to mid
+j=mid+1; // Varies from mid+1 to high
+i=low; // Varies from low to high
+while((h<=mid) && (j<=high))
+{
+if(a[h]<=a[j])
+{
+
+b[i]=a[h]; // Insert Element from left
+list to sorted list
+
+h++;
+}
+else
+{
+b[i]=a[j]; // Insert Element from right to sorted list
+j++;
+}
+i++; // Update index of sorted list
+}
+
+3
+
+if(h>mid) // Left list get terminated
+for(k=j;k<=high;k++)
+{
+b[i]=a[k]; //Append elements from right list to sorted list
+i++;
+}
+else // Right list get terminated
+for(k=h;k<=mid;k++)
+{
+b[i]=a[k]; // Append elements from left list to sorted list
+i++;
+}
+printf("\n");
+for(k=low;k<=high;k++) // Display passes
+{
+a[k]=b[k];
+printf("%5d ",a[k]);
+}
+}
