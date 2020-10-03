@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+int *a, n;
+void quicksort(int p, int q);
+int partition(int m, int p);
+void main()
+{
+int i;
+clrscr();
+printf(" Enter array size: ");
+scanf("%d",&n);
+a= (int *) malloc (n);
+printf("\n Enter %d integers. : ",n);
+for(i=1;i<=n;i++)
+scanf("%d",&a[i]);
+printf("\n");
+printf("\n quicksort(%d,%d)",1,n);
+quicksort(1,n);
+printf("\n Sorted List : ");
+for(i=1;i<=n;i++)
+printf("%3d ",a[i]);
+getch();
+}
+void quicksort(int p, int q)
+{
+int j;
+if(p<q)
+{
+j = partition(p,q+1);
+printf("\nj = %3d",j);
+
+2
+
+getch();
+printf("\n quicksort(%d,%d)",p,j-1);
+quicksort(p,j-1);
+printf("\n quicksort(%d,%d)",j+1,q);
+quicksort(j+1,q);
+}
+}
+int partition(int m, int p)
+{
+int v, i, j, t, k;
+v = a[m]; //Partition element
+i=m;
+j=p;
+do
+{
+do
+{
+i++;
+} while(v > a[i]);
+do
+{
+j--;
+} while(v < a[j]);
+
+if(i<j)
+{
+t=a[i];
+a[i] = a[j];
+a[j]=t;
+}
+} while(i<j);
+a[m]=a[j];
+a[j]=v;
+for(k=m; k<p; k++)
+printf("%3d ", a[k]);
+return j;
+}
