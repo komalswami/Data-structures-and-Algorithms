@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<conio.h>
+# include<stdlib.h>
+# define MAX 5 //Define Stack Size
+struct stack // Stack Structure
+{
+int a[MAX];
+int TOP;
+}s;
+void push();
+void pop();
+void display();
+void main()
+{
+char ch;
+int choice;
+clrscr();
+s.TOP=-1; //Stack Initialization
+do
+{
+printf("\n1. Push 2. Pop 3. Display 4. Exit");
+printf("\nEnter your choice : ");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1: push(); break;
+case 2: pop(); break;
+case 3: display(); break;
+case 4: exit(0);
+default: printf("\n Wrong Choice...");
+}
+printf("\nDo u want to cnt...");
+flushall();
+ch=getche();
+} while(ch == 'y');
+}
+void push() //Insertion of data items
+{
+char ch;
+int x;
+do
+{
+if(s.TOP == MAX-1) // Test Stack overflow
+{
+printf("\n Stack Overflow ");
+break;
+}
+else // If Stack Not Full
+{
+printf("\n Enter data item : ");
+scanf("%d",&x);
+s.TOP++;
+s.a[s.TOP] = x;
+}
+printf("\nDo U want to push more? (y/n) ");
+flushall();
+ch=getche();
+} while(ch == 'y');
+}
+void pop() //Deletion of Data Items
+{
+char ch;
+do
+{
+if(s.TOP == -1) //Test Stack Underflow
+{
+printf("\n Stack Underflow ");
+break;
+}
+else // If stack Not empty
+{
+printf("\n %d has been deleted", s.a[s.TOP]);
+s.TOP--;
+}
+printf("\n Do U want to pop more? (y/n) ");
+flushall();
+ch=getche();
+} while(ch == 'y');
+}
+void display() //Display Stack Data Items
+{
+int i;
+if(s.TOP == -1) //Stack empty
+printf("\n Stack Empty" );
+else
+{
+for(i=s.TOP ; i>=0 ; i--)
+printf("\n %d: %3d",i,s.a[i]);
+}
+}
