@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int a[20],i,j,k,n;
+clrscr();
+printf("Enter array size");
+scanf("%d",&n);
+printf("Enter %d integers",n);
+for(i=0;i<n;i++)
+scanf("%d",&a[i]);
+for(j=1;j<n;j++)
+{
+k=a[j];
+for(i=j-1;i>=0 && k<a[i];i--)
+a[i+1]=a[i];
+a[i+1]=k;
+printf("\n Pass %d: ",j);
+for(i=0;i<n;i++)
+printf(" %d",a[i]);
+}
+printf("\n Sorted list: ");
+for(i=0;i<n;i++)
+printf(" %d",a[i]);
+getch();
+}
