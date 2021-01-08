@@ -1,0 +1,13 @@
+Vector: Vector is a type of dynamic array which has the ability to resize automatically after insertion or deletion of elements. The elements in vector are placed in contiguous storage so that they can be accessed and traversed using iterators. Element is inserted at the end of the vector.
+Example:
+
+vector v;
+v.insert(5);
+v.delete();
+
+List: List is a double linked sequence that supports both forward and backward traversal. The time taken in the insertion and deletion in the beginning, end and middle is constant. It has the non-contiguous memory and there is no pre-allocated memory.
+Example:
+
+list  l;
+l.insert_begin(5);
+l.delete_end();
